@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  bot:
+    build: .
+    command: python src/main.py
+    env_file: .env  # <-- Добавляем эту строку
+    volumes:
+      - ./ege_bot.db:/app/ege_bot.db
+      - ./migrations:/app/migrations
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+    restart: unless-stopped
